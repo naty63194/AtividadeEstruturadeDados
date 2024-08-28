@@ -113,5 +113,3 @@ lista.insere_ordenado(10)
 lista.insere_ordenado(20)
 lista.insere_ordenado(30)
 
-# To só testando para ver se meus commit tão indo pra
-# main ou pra minha propria branch
