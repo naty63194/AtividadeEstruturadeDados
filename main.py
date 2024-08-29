@@ -14,11 +14,12 @@ class ListaDuplamenteEncadeadaOrdenada:
         self.ultimo = None
 
     def __lista_vazia(self):
-        return self.primeiro == None
+        return self.primeiro is None
 
     def insere_ordenado(self, valor):
         novo = No(valor)
         atual = self.primeiro
+        anterior = None
 
         if self.__lista_vazia():
             self.primeiro = novo
@@ -47,12 +48,8 @@ class ListaDuplamenteEncadeadaOrdenada:
             return None
 
         temp = self.primeiro
-        if self.primeiro.proximo is None:
-            self.primeiro = None
-            self.ultimo = None
-        else:
-            self.primeiro = self.primeiro.proximo
-            self.primeiro.anterior = None
+        self.primeiro = self.primeiro.proximo
+        self.primeiro.anterior = None
 
         return temp
 
@@ -61,12 +58,8 @@ class ListaDuplamenteEncadeadaOrdenada:
             return None
 
         temp = self.ultimo
-        if self.primeiro.proximo is None:
-            self.primeiro = None
-            self.ultimo = None
-        else:
-            self.ultimo = self.ultimo.anterior
-            self.ultimo.proximo = None
+        self.ultimo = self.ultimo.anterior
+        self.ultimo.proximo = None
 
         return temp
 
@@ -112,4 +105,6 @@ lista = ListaDuplamenteEncadeadaOrdenada()
 lista.insere_ordenado(10)
 lista.insere_ordenado(20)
 lista.insere_ordenado(30)
+
+lista.mostrar_frente()
 
