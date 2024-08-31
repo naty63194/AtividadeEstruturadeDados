@@ -99,12 +99,33 @@ class ListaDuplamenteEncadeadaOrdenada:
             self.excluir_inicio()
         print("Lista limpa com sucesso.")
 
+    # Faz a busca de um número começando do início da lista
+    def buscar_frente(self, valor):
+        atual = self.primeiro
+        posicao = 0
+
+        while atual is not None and atual.valor <= valor:
+            if atual.valor == valor:
+                return f"O Número {valor} foi encontrado na posição {posicao}."
+            atual = atual.proximo
+            posicao += 1
+
+        return f"O número {valor} não foi encontrado."
+
+
+
+
 
 # Exemplo de uso:
 lista = ListaDuplamenteEncadeadaOrdenada()
 lista.insere_ordenado(10)
 lista.insere_ordenado(20)
 lista.insere_ordenado(30)
+lista.insere_ordenado(40)
 
 lista.mostrar_frente()
+
+print("")
+
+print(lista.buscar_frente(30))
 
