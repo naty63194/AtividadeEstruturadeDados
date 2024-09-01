@@ -12,6 +12,7 @@ class ListaDuplamenteEncadeadaOrdenada:
     def __init__(self):
         self.primeiro = None
         self.ultimo = None
+        self.tamanho = 0
 
     def __lista_vazia(self):
         return self.primeiro is None
@@ -20,6 +21,7 @@ class ListaDuplamenteEncadeadaOrdenada:
         novo = No(valor)
         atual = self.primeiro
         anterior = None
+        self.tamanho += 1
 
         if self.__lista_vazia():
             self.primeiro = novo
@@ -50,6 +52,7 @@ class ListaDuplamenteEncadeadaOrdenada:
         temp = self.primeiro
         self.primeiro = self.primeiro.proximo
         self.primeiro.anterior = None
+        self.tamanho -= 1
 
         return temp
 
@@ -60,6 +63,7 @@ class ListaDuplamenteEncadeadaOrdenada:
         temp = self.ultimo
         self.ultimo = self.ultimo.anterior
         self.ultimo.proximo = None
+        self.tamanho -= 1
 
         return temp
 
@@ -99,12 +103,47 @@ class ListaDuplamenteEncadeadaOrdenada:
             self.excluir_inicio()
         print("Lista limpa com sucesso.")
 
+    # Faz a busca de um número começando no início da lista
+    def buscar_frente(self, valor):
+        atual = self.primeiro
+        posicao = 0
+
+        while atual is not None and atual.valor <= valor:
+            if atual.valor == valor:
+                return f"O Número {valor} foi encontrado na posição {posicao}."
+            atual = atual.proximo
+            posicao += 1
+
+        return f"O número {valor} não foi encontrado."
+
+    # Faz a busca de um número começando no final da lista
+    def buscar_tras(self, valor):
+        atual = self.ultimo
+        posicao = self.tamanho - 1
+
+        while atual is not None and atual.valor >= valor:
+            if atual.valor == valor:
+                return f"O Número {valor} foi encontrado na posição {posicao}."
+            atual = atual.anterior
+            posicao -= 1
+
+        return f"O número {valor} não foi encontrado."
+
+
+
+
 
 # Exemplo de uso:
 lista = ListaDuplamenteEncadeadaOrdenada()
 lista.insere_ordenado(10)
 lista.insere_ordenado(20)
 lista.insere_ordenado(30)
+lista.insere_ordenado(40)
 
 lista.mostrar_frente()
+
+print("")
+
+print(lista.buscar_frente(30))
+print(lista.buscar_tras(30))
 
