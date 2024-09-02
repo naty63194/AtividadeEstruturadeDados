@@ -129,48 +129,68 @@ class ListaDuplamenteEncadeadaOrdenada:
 
         return f"O número {valor} não foi encontrado."
 
-# Função que chama o menu
-def menu():
-    try:
-        lista = ListaDuplamenteEncadeadaOrdenada()
-    except Exception:
-        print("\033[31mERRO Algo deu errado! Verifique o código!\033[m")
-    else:
-        print("Lista Inicializada com sucesso!")
-        while True:
-            print(f'{" Menu ":=^40}')
-            print("1. Mostrar lista (Crescente)")
-            print("2. Mostrar lista (Decrescente)")
-            print("3. Inserir um valor")
-            print("4. Excluir um valor (Início)")
-            print("5. Excluir um valor (Final)")
-            print("6. Excluir um valor (Tudo)")
-            print("7. Buscar um valor (Crescente)")
-            print("8. Buscar um valor (Decrescente)")
-            print("9. Sair")
-            escolha = int(input("Escolha: "))
 
-            if escolha == 1:
-                print("escolheu 1")
-            elif escolha == 2:
-                print("escolheu 2")
-            elif escolha == 3:
-                print("escolheu 3")
-            elif escolha == 4:
-                print("escolheu 4")
-            elif escolha == 5:
-                print("escolheu 5")
-            elif escolha == 6:
-                print("escolheu 6")
-            elif escolha == 7:
-                print("escolheu 7")
-            elif escolha == 8:
-                print("escolheu 8")
+# Função para receber os dados do tipo correto já que python tem tipagem dinâmica
+def recebe_inteiro(numero_inicial, numero_final, txt=""):
+    while True:
+        try:
+            inteiro = int(input(txt))
+        except ValueError:
+            print("Valor do tipo incorreto inserido! Tente novamente.")
+        else:
+            if inteiro < numero_inicial or inteiro > numero_final:
+                print("Esse valor não é válido! Tente novamente.")
             else:
                 break
+    return inteiro
+
+# Função que chama o menu
+def menu():
+    print("1. Mostrar lista (Crescente)")
+    print("2. Mostrar lista (Decrescente)")
+    print("3. Inserir um valor")
+    print("4. Excluir um valor (Início)")
+    print("5. Excluir um valor (Final)")
+    print("6. Excluir um valor (Tudo)")
+    print("7. Buscar um valor (Crescente)")
+    print("8. Buscar um valor (Decrescente)")
+    print("9. Sair")
+    opcao = recebe_inteiro(1, 9, "Escolha uma opção: ")
+    return opcao
 
 
-menu()
+# Começa aqui "main()"
+lista = ListaDuplamenteEncadeadaOrdenada()
+print(f'{" Listas Duplamente Encadeadas e Ordenadas ":=^60}')
+while True:
+    escolha = menu()
+    if escolha == 1:
+        print("escolheu 1")
+        lista.mostrar_frente()
+    elif escolha == 2:
+        print("escolheu 2")
+        lista.mostrar_tras()
+    elif escolha == 3:
+        print("escolheu 3")
+        lista.insere_ordenado(1)
+    elif escolha == 4:
+        print("escolheu 4")
+        lista.excluir_inicio()
+    elif escolha == 5:
+        print("escolheu 5")
+        lista.excluir_final()
+    elif escolha == 6:
+        print("escolheu 6")
+        lista.limpar_lista()
+    elif escolha == 7:
+        print("escolheu 7")
+        lista.buscar_frente(1)
+    elif escolha == 8:
+        print("escolheu 8")
+        lista.buscar_tras(1)
+    else:
+        break
+
 
 # Exemplo de uso:
 # lista = ListaDuplamenteEncadeadaOrdenada()
