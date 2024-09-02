@@ -1,3 +1,5 @@
+import sys
+
 class No:
     def __init__(self, valor):
         self.valor = valor
@@ -130,20 +132,65 @@ class ListaDuplamenteEncadeadaOrdenada:
         return f"O número {valor} não foi encontrado."
 
 
+# Função para receber os dados do tipo correto já que python tem tipagem dinâmica
+# Também determina um limite mínimo e máximo aceito
+# Caso não sejam definidos ele já deixa um limite bem generoso
+def recebe_inteiro(numero_inicial=sys.maxsize * -1, numero_final=sys.maxsize, txt=""):
+    while True:
+        try:
+            inteiro = int(input(txt))
+        except ValueError:
+            print("Valor do tipo incorreto inserido! Tente novamente.")
+        else:
+            if inteiro < numero_inicial or inteiro > numero_final:
+                print("Esse valor não é válido! Tente novamente.")
+            else:
+                break
+    return inteiro
+
+# Função que chama o menu e retorna a escolha do usuário
+def menu():
+    print(f'{" Listas Duplamente Encadeadas e Ordenadas ":=^60}')
+    print("1. Mostrar lista (Crescente)")
+    print("2. Mostrar lista (Decrescente)")
+    print("3. Inserir um valor")
+    print("4. Excluir um valor (Início)")
+    print("5. Excluir um valor (Final)")
+    print("6. Excluir um valor (Tudo)")
+    print("7. Buscar um valor (Crescente)")
+    print("8. Buscar um valor (Decrescente)")
+    print("9. Sair")
+    opcao = recebe_inteiro(1, 9, "Escolha uma opção: ")
+    return opcao
 
 
-
-# Exemplo de uso:
+# Começa aqui "main()"
 lista = ListaDuplamenteEncadeadaOrdenada()
-lista.insere_ordenado(10)
-lista.insere_ordenado(20)
-lista.insere_ordenado(30)
-lista.insere_ordenado(40)
-
-lista.mostrar_frente()
-
-print("")
-
-print(lista.buscar_frente(30))
-print(lista.buscar_tras(30))
-
+while True:
+    match menu():
+        case (1):
+            print("Lista Crescente: ")
+            lista.mostrar_frente()
+        case (2):
+            print("Lista Decrescente: ")
+            lista.mostrar_tras()
+        case (3):
+            numeroInt = recebe_inteiro(txt="Digite um número inteiro: ")
+            lista.insere_ordenado(numeroInt)
+            print(f"Número {numeroInt} inserido com sucesso.")
+        case (4):
+            lista.excluir_inicio()
+            print("Primeiro item da lista excluido com sucesso.")
+        case (5):
+            lista.excluir_final()
+            print("Último item da lista excluido com sucesso.")
+        case (6):
+            lista.limpar_lista()
+            print("Lista limpa com sucesso.")
+        case (7):
+            print(lista.buscar_frente(recebe_inteiro(txt="Digite um número inteiro: ")))
+        case (8):
+            print(lista.buscar_tras(recebe_inteiro(txt="Digite um número inteiro: ")))
+        case _:
+            break
+    print("")
