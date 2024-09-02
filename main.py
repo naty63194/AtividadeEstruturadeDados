@@ -1,3 +1,5 @@
+import sys
+
 class No:
     def __init__(self, valor):
         self.valor = valor
@@ -131,7 +133,9 @@ class ListaDuplamenteEncadeadaOrdenada:
 
 
 # Função para receber os dados do tipo correto já que python tem tipagem dinâmica
-def recebe_inteiro(numero_inicial, numero_final, txt=""):
+# Também determina um limite mínimo e máximo aceito
+# Caso não sejam definidos ele já deixa um limite bem generoso
+def recebe_inteiro(numero_inicial=sys.maxsize * -1, numero_final=sys.maxsize, txt=""):
     while True:
         try:
             inteiro = int(input(txt))
@@ -144,8 +148,9 @@ def recebe_inteiro(numero_inicial, numero_final, txt=""):
                 break
     return inteiro
 
-# Função que chama o menu
+# Função que chama o menu e retorna a escolha do usuário
 def menu():
+    print(f'{" Listas Duplamente Encadeadas e Ordenadas ":=^60}')
     print("1. Mostrar lista (Crescente)")
     print("2. Mostrar lista (Decrescente)")
     print("3. Inserir um valor")
@@ -161,53 +166,32 @@ def menu():
 
 # Começa aqui "main()"
 lista = ListaDuplamenteEncadeadaOrdenada()
-print(f'{" Listas Duplamente Encadeadas e Ordenadas ":=^60}')
 while True:
     escolha = menu()
     if escolha == 1:
-        print("escolheu 1")
+        print("Lista Crescente: ")
         lista.mostrar_frente()
     elif escolha == 2:
-        print("escolheu 2")
+        print("Lista Decrescente: ")
         lista.mostrar_tras()
     elif escolha == 3:
-        print("escolheu 3")
-        lista.insere_ordenado(1)
+        numeroInt = recebe_inteiro(txt="Digite um número inteiro: ")
+        lista.insere_ordenado(numeroInt)
+        print(f"Número {numeroInt} inserido com sucesso.")
     elif escolha == 4:
-        print("escolheu 4")
         lista.excluir_inicio()
+        print("Primeiro item da lista excluido com sucesso.")
     elif escolha == 5:
-        print("escolheu 5")
         lista.excluir_final()
+        print("Último item da lista excluido com sucesso.")
     elif escolha == 6:
-        print("escolheu 6")
         lista.limpar_lista()
+        print("Lista limpa com sucesso.")
     elif escolha == 7:
-        print("escolheu 7")
-        lista.buscar_frente(1)
+        print(lista.buscar_frente(recebe_inteiro(txt="Digite um número inteiro: ")))
     elif escolha == 8:
-        print("escolheu 8")
-        lista.buscar_tras(1)
+        print(lista.buscar_tras(recebe_inteiro(txt="Digite um número inteiro: ")))
     else:
         break
-
-
-# Exemplo de uso:
-# lista = ListaDuplamenteEncadeadaOrdenada()
-# lista.insere_ordenado(10)
-# lista.insere_ordenado(20)
-# lista.insere_ordenado(30)
-# lista.insere_ordenado(40)
-# lista.insere_ordenado(40)
-# lista.insere_ordenado(80)
-# lista.insere_ordenado(5)
-# lista.insere_ordenado(35)
-# lista.insere_ordenado(55)
-
-# lista.mostrar_frente()
-#
-# print("")
-#
-# print(lista.buscar_frente(30))
-# print(lista.buscar_tras(30))
-
+    print("")
+    
