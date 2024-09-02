@@ -167,31 +167,30 @@ def menu():
 # Começa aqui "main()"
 lista = ListaDuplamenteEncadeadaOrdenada()
 while True:
-    escolha = menu()
-    if escolha == 1:
-        print("Lista Crescente: ")
-        lista.mostrar_frente()
-    elif escolha == 2:
-        print("Lista Decrescente: ")
-        lista.mostrar_tras()
-    elif escolha == 3:
-        numeroInt = recebe_inteiro(txt="Digite um número inteiro: ")
-        lista.insere_ordenado(numeroInt)
-        print(f"Número {numeroInt} inserido com sucesso.")
-    elif escolha == 4:
-        lista.excluir_inicio()
-        print("Primeiro item da lista excluido com sucesso.")
-    elif escolha == 5:
-        lista.excluir_final()
-        print("Último item da lista excluido com sucesso.")
-    elif escolha == 6:
-        lista.limpar_lista()
-        print("Lista limpa com sucesso.")
-    elif escolha == 7:
-        print(lista.buscar_frente(recebe_inteiro(txt="Digite um número inteiro: ")))
-    elif escolha == 8:
-        print(lista.buscar_tras(recebe_inteiro(txt="Digite um número inteiro: ")))
-    else:
-        break
+    match menu():
+        case (1):
+            print("Lista Crescente: ")
+            lista.mostrar_frente()
+        case (2):
+            print("Lista Decrescente: ")
+            lista.mostrar_tras()
+        case (3):
+            numeroInt = recebe_inteiro(txt="Digite um número inteiro: ")
+            lista.insere_ordenado(numeroInt)
+            print(f"Número {numeroInt} inserido com sucesso.")
+        case (4):
+            lista.excluir_inicio()
+            print("Primeiro item da lista excluido com sucesso.")
+        case (5):
+            lista.excluir_final()
+            print("Último item da lista excluido com sucesso.")
+        case (6):
+            lista.limpar_lista()
+            print("Lista limpa com sucesso.")
+        case (7):
+            print(lista.buscar_frente(recebe_inteiro(txt="Digite um número inteiro: ")))
+        case (8):
+            print(lista.buscar_tras(recebe_inteiro(txt="Digite um número inteiro: ")))
+        case _:
+            break
     print("")
-    
