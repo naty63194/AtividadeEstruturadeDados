@@ -23,11 +23,14 @@ while True:
             lista.excluir_final()
             print("Último item da lista excluido com sucesso.")
         case (6):
+            numeroInt = recebe_inteiro(txt="Digite um número inteiro: ")
+            lista.excluir_valor(numeroInt)
+        case (7):
             lista.limpar_lista()
             print("Lista limpa com sucesso.")
-        case (7):
-            print(lista.buscar_frente(recebe_inteiro(txt="Digite um número inteiro: ")))
         case (8):
+            print(lista.buscar_frente(recebe_inteiro(txt="Digite um número inteiro: ")))
+        case (9):
             print(lista.buscar_tras(recebe_inteiro(txt="Digite um número inteiro: ")))
         case _:
             break
