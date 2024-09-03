@@ -13,5 +13,5 @@ def menu():
     print("8. Buscar um valor (Crescente)")
     print("9. Buscar um valor (Decrescente)")
     print("10. Sair")
-    opcao = recebe_inteiro(1, 9, "Escolha uma opção: ")
+    opcao = recebe_inteiro(1, 10, "Escolha uma opção: ")
     return opcao
