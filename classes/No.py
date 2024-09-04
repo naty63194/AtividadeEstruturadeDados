@@ -5,4 +5,4 @@ class No:
         self.anterior = None
 
     def mostra_no(self):
-        print(self.valor)
+        print(self.valor, end=" ")

@@ -9,7 +9,7 @@ def menu():
     print("4. Excluir um valor (Início)")
     print("5. Excluir um valor (Final)")
     print("6. Excluir um valor (Específico)")
-    print("7. Excluir um Tudo")
+    print("7. Excluir Tudo")
     print("8. Buscar um valor (Crescente)")
     print("9. Buscar um valor (Decrescente)")
     print("10. Sair")

@@ -5,6 +5,7 @@ from util.tratamentoDeDados import *
 # "main()"
 lista = ListaDuplamenteEncadeadaOrdenada()
 while True:
+    print("")
     match menu():
         case (1):
             print("Lista Crescente: ")

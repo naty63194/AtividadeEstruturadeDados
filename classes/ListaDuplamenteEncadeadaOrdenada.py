@@ -57,8 +57,14 @@ class ListaDuplamenteEncadeadaOrdenada:
             return None
 
         temp = self.primeiro  # Armazena em uma variável temporária a informação do primeiro elemento
-        self.primeiro = self.primeiro.proximo  # O primeiro agora passa a ser o seu posterior
-        self.primeiro.anterior = None  # O ponteiro "anterior" do elemento que agora está em primeiro é zerado (null)
+
+        if self.primeiro == self.ultimo:
+            self.primeiro = None
+            self.ultimo = None
+        else:
+            self.primeiro = self.primeiro.proximo  # O primeiro agora passa a ser o seu posterior
+            self.primeiro.anterior = None  # O ponteiro "anterior" do elemento que agora está em primeiro é zerado (null)
+
         self.tamanho -= 1  # Atualiza o atributo tamanho na lista
 
         return temp # retorna o novo inicio da lista já modificado
@@ -69,8 +75,14 @@ class ListaDuplamenteEncadeadaOrdenada:
             return None
 
         temp = self.ultimo  # Armazena em uma variável temporária a informação do último elemento
-        self.ultimo = self.ultimo.anterior  # O último agora passa a ser o seu anterior
-        self.ultimo.proximo = None  # O ponteiro "posterior" do elemento que agora está em último é zerado (null)
+
+        if self.ultimo == self.primeiro:
+            self.ultimo = None
+            self.primeiro = None
+        else:
+            self.ultimo = self.ultimo.anterior  # O último agora passa a ser o seu anterior
+            self.ultimo.proximo = None  # O ponteiro "posterior" do elemento que agora está em último é zerado (null)
+
         self.tamanho -= 1
 
         return temp # retorna o novo final da lista já modificado
@@ -124,7 +136,6 @@ class ListaDuplamenteEncadeadaOrdenada:
         # Enquanto a lista não estiver vazia exclui o primeiro da lista
         while not self.__lista_vazia():
             self.excluir_inicio()
-        print("Lista limpa com sucesso.")
 
     # Faz a busca de um número começando no início da lista
     def buscar_frente(self, valor):
@@ -148,7 +159,7 @@ class ListaDuplamenteEncadeadaOrdenada:
         # Percorre a lista até encontrar um valor igual ou menor que o esperado
         while atual is not None and atual.valor >= valor:
             if atual.valor == valor:
-                return f"O Número {valor} foi encontrado na posição {posicao}. N° de comparações: {(self.tamanho - posicao) + 1}"
+                return f"O Número {valor} foi encontrado na posição {posicao}. N° de comparações: {(self.tamanho - posicao)}"
             atual = atual.anterior
             posicao -= 1
 
